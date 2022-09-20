@@ -18,7 +18,7 @@ namespace HUDV1._0
             int lives; //player lives
             int scoremultiplier; //score multiplier
             int enemyValue; //enemy worth in points
-            int enemyDamage; //amount of damage an enemy does
+            float enemyDamage; //amount of damage an enemy does
 
             //intialize variables for gamestart
             score = 0;
@@ -27,7 +27,7 @@ namespace HUDV1._0
             lives = 3;
             scoremultiplier = 1;
             enemyValue = 100;
-            enemyDamage = 100;
+            enemyDamage = 99.5f;
 
             Console.WriteLine(studioname);
             Console.WriteLine(gamename);
@@ -48,6 +48,8 @@ namespace HUDV1._0
 
             Console.Clear();
 
+            Console.WriteLine(studioname);
+            Console.WriteLine(gamename);
             Console.WriteLine();
             Console.WriteLine("Health: {0}. Shields: {1}. Lives: {2}", health, shield, lives);
             Console.WriteLine("Score: {0} X {1}", score, scoremultiplier);
@@ -65,6 +67,13 @@ namespace HUDV1._0
             health = health + shield - enemyDamage;
             shield = shield - enemyDamage;
 
+            if(shield < 0)
+            {
+                shield = 0;
+            }
+
+            Console.WriteLine(studioname);
+            Console.WriteLine(gamename);
             Console.WriteLine();
             Console.WriteLine("Health: {0}. Shields: {1}. Lives: {2}", health, shield, lives);
             Console.WriteLine("Score: {0} X {1}", score, scoremultiplier);
@@ -82,12 +91,20 @@ namespace HUDV1._0
             scoremultiplier *= 2;
             health = health + shield - enemyDamage;
             shield = shield - enemyDamage;
-            lives = 2;
+            
+            if (health < 0)
+            {
+                lives--;
+                health = 50;
+                shield = 75;
+            }
 
+            Console.WriteLine(studioname);
+            Console.WriteLine(gamename);
             Console.WriteLine();
             Console.WriteLine("Health: {0}. Shields: {1}. Lives: {2}", health, shield, lives);
             Console.WriteLine("Score: {0} X {1}", score, scoremultiplier);
-            Console.WriteLine("Press any key to attempt a strike!");
+            Console.WriteLine("Thanks for playing!");
             Console.ReadKey(true);
 
         }
